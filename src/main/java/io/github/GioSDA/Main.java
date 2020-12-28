@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.LinkedList;
 
 import io.github.GioSDA.interpreter.BowlInterpreter;
+import io.github.GioSDA.parser.BowlParser;
 
 public class Main {
 
@@ -12,8 +13,9 @@ public class Main {
 		
 		String code = argl.getFirst();
 		
-		BowlInterpreter BI = new BowlInterpreter(code, args);
+		BowlParser parser = new BowlParser(code);
 		
+		BowlInterpreter interpreter = new BowlInterpreter(parser.parse(), args);
 	}
 
 }

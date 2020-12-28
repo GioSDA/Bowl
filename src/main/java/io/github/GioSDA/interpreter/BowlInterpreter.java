@@ -6,13 +6,18 @@ import java.util.List;
 public class BowlInterpreter {
 
 	private List<Object> list = new ArrayList<Object>();
-	private String code;
+
 	
-	public BowlInterpreter(String code, String[] input) {
-		this.code = code;
+	public BowlInterpreter(byte[] bs, String[] input) {
 		for (String i : input) {
 			list.add(input);
 		}
+		
+		System.out.println(eval(bs));
+	}
+	
+	public Object eval(byte[] bs) {
+		
 	}
 	
 }
