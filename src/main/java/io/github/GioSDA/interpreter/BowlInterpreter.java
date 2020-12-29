@@ -10,14 +10,19 @@ public class BowlInterpreter {
 	
 	public BowlInterpreter(byte[] bs, String[] input) {
 		for (String i : input) {
-			list.add(input);
+			list.add(i);
 		}
 		
 		System.out.println(eval(bs));
 	}
 	
 	public Object eval(byte[] bs) {
-		
+		for (byte c : bs) {
+			switch (c) {
+				
+			}
+		}
+		return bs;
 	}
 	
 }
