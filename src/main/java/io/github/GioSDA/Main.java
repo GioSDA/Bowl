@@ -14,7 +14,7 @@ public class Main {
 		LinkedList<String> argl = new LinkedList<String>();
 		
 		if (args.length < 1) {
-			Scanner s = new Scanner(System.in).useDelimiter("\n");
+			Scanner s = new Scanner(System.in).useDelimiter("\r\n");
 			
 			argl.addAll(Arrays.asList(s.next().split(" ")));
 			
@@ -26,11 +26,14 @@ public class Main {
 		
 		code = argl.pop();
 		
+//		long a = System.nanoTime();
 		BowlParser parser = new BowlParser(code);
 		
 		BowlInterpreter interpreter = new BowlInterpreter(parser.parse(), argl);
-		
+
 		interpreter.eval();
+		
+//		System.out.println((double) (System.nanoTime() - a) / 1_000_000 + " Miliseconds");
 	}
 
 }

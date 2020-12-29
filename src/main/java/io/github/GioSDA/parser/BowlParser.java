@@ -17,7 +17,10 @@ public class BowlParser {
 	public byte[] parse() {
 		byte[] instructions = new byte[code.length()];
 		for (int i = 0; i < code.length(); i++) {
-			instructions[i] = (byte) codepage.indexOf(code.charAt(i));
+			int b = codepage.indexOf(code.charAt(i));
+			if (b != -1) {
+				instructions[i] = (byte) (codepage.indexOf(code.charAt(i)) + 1);
+			}
 		}
 		return instructions;
 	}

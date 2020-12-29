@@ -24,8 +24,8 @@ public class BowlInterpreter {
 	public Object eval(byte[] bs) {
 		for (byte c : bs) {
 			switch (c) {
-			case 0: //A
-				return 3;
+			case 1: //A
+				return list;
 			}
 		}
 		return bs;
