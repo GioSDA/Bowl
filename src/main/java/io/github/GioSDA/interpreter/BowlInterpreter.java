@@ -17,7 +17,6 @@ public class BowlInterpreter {
 		this.mode = !isInteger(argl.peek());
 		
 			for (String i : argl) {
-				System.out.println(i);
 				if (!mode) list.add(Integer.parseInt(i));
 				if (mode) list.add(i);
 			}
@@ -26,46 +25,49 @@ public class BowlInterpreter {
 	}
 	
 	public void eval() {
-		System.out.println(eval(bs));
+		eval(bs);
+		System.out.println(list);
 	}
 	
-	public Object eval(byte[] bs) {
+	public void eval(byte[] bs) {
 		for (byte c : bs) {
 			switch (c) {
 			case 1: //+
-				return add(stack.pop());
+				add(stack.pop());
+				break;
 			case 2: //-
-				return subtract(stack.pop());
+				subtract(stack.pop());
+				break;
 			case 3: //×
-				return multiply(stack.pop());
+				multiply(stack.pop());
+				break;
 			case 4: //÷
-				return divide(stack.pop());
+				divide(stack.pop());
+				break;
+			case 5: //"
+				stack.push(10); 
+				break;
 			}
 		}
-		return bs;
 	}
 	
-	public Object add(Object a) {
+	public void add(Object a) {
 		if (!mode) list.replaceAll(m -> (int) m + (int) a);
 		else list.replaceAll(m -> (String) m + (String) a);
-		return a;
 	}
 	
-	public Object subtract(Object a) {
+	public void subtract(Object a) {
 		list.replaceAll(m -> (int) m - (int) a);
-		return a;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public Object multiply(Object a) {
+	public void multiply(Object a) {
 		if (!mode) list.replaceAll(m -> (int) m * (int) a);
 		else list.replaceAll(m -> zip((List<String>) m, (String)a));
-		return a;
 	}
 	
-	public Object divide(Object a) {
+	public void divide(Object a) {
 		list.replaceAll(m -> (int) m / (int) a);
-		return a;
 	}
 	
 	public List<String> zip(List<String> a, String b) {
