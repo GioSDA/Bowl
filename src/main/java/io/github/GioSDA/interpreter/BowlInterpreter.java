@@ -45,7 +45,7 @@ public class BowlInterpreter {
 				divide(stack.pop());
 				break;
 			case 5: //"
-				stack.push(10); 
+				pushTen();
 				break;
 			}
 		}
@@ -60,29 +60,30 @@ public class BowlInterpreter {
 		list.replaceAll(m -> (int) m - (int) a);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void multiply(Object a) {
 		if (!mode) list.replaceAll(m -> (int) m * (int) a);
-		else list.replaceAll(m -> zip((List<String>) m, (String)a));
+		else list.replaceAll(m -> zip((String) m, (String)a));
 	}
 	
 	public void divide(Object a) {
 		list.replaceAll(m -> (int) m / (int) a);
 	}
 	
-	public List<String> zip(List<String> a, String b) {
-		List<String> newa = new ArrayList<>();
-		for (String c : a) {
-			char[] ca = new char[c.length() + b.length()];
-			for (int i = 0; i < ca.length; i++) {
-				ca[i*2] = c.charAt(i);
-			}
-			for (int i = 0; i < ca.length; i++) {
-				ca[i*2+1] = b.charAt(i);
-			}
-			newa.add(ca.toString());
+	public void pushTen() {
+		if (!mode) stack.push(10);
+		else stack.push("Ten");
+	}
+	
+	public String zip(String a, String b) {		
+		char[] ca = new char[a.length() + b.length()];
+		for (int i = 0; i < a.length(); i++) {
+			ca[i*2] = a.charAt(i);
 		}
-		return newa;
+		for (int i = 0; i < b.length(); i++) {
+			ca[i*2+1] = b.charAt(i);
+		}
+		
+		return new String(ca);
 	}
 	
 	public static boolean isInteger(String str) {
